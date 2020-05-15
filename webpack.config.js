@@ -2,6 +2,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 const path = require("path");
 
 const config = {
@@ -10,12 +11,20 @@ const config = {
     },
     output: {
       path: __dirname + "/public/dist",
-      // filename: "[name].bundle.js"
       filename: "[name].[contenthash].bundle.js",
-      publicPath: '/dist'
+      publicPath: '/dist',
+      // filename: "[name].bundle.js"
+      // libraryTarget: 'umd',  
+      // library: ''
     },
     mode: "development",
     devtool: "source-map",
+    // devServer: {
+    //   port: 3000,
+    //   contentBase: path.join(),
+    //   writeToDisk: true,
+    //   hot: true
+    // },
     plugins: [
         new WebpackPwaManifest({
           filename: "manifest.json",
@@ -43,13 +52,14 @@ const config = {
           ]
         }),
         new HtmlWebpackPlugin({
-          template: './public/index.html',
+          template: './public/template.html',
           
         }),
         new MiniCssExtractPlugin({
           filename: 'style.css'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        // new webpack.HotModuleReplacementPlugin()
       ],
     module: {
       rules: [

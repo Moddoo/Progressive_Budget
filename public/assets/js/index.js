@@ -3,6 +3,7 @@ import '../css/styles.css';
 let transactions = [];
 let myChart;
 
+// if(module && module.hot) module.hot.accept()
 
 fetch("/api/transaction")
   .then(response => {

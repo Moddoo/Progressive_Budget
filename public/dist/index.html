@@ -46,6 +46,36 @@
 
   
   <script type="text/javascript">
+    if('Notification' in window) {
+      if(Notification.permission === 'granted') {
+        doNotify()
+      };
+      if(Notification.permission !== 'denied') {
+        Notification.requestPermission()
+             .then(permission => {
+          if(permission === 'granted') {
+            doNotify()
+          }
+        })
+             .catch(err => console.error(err))
+      };
+      function doNotify() {
+        let title = "Message From Moddoo";
+        let options = {
+          body: "Click Me Meow",
+          icon: "https://images.pexels.com/photos/4048182/pexels-photo-4048182.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+        };
+
+        let notify = new Notification(title, options);
+
+        notify.addEventListener('click', e => {
+          alert("you clicked me");
+        });
+        notify.addEventListener('show', e => console.log(e, 'Appeared'))
+        notify.addEventListener('close', e => console.log('closed'))
+        setTimeout(notify.close.bind(notify), 5000)
+      }
+    }
     (function() {
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
@@ -62,5 +92,5 @@
   </script>
   <!-- <script type="text/javascript" src="./dist/index.bundle.js"></script> -->
 
-<script src="/dist/index.fff5bb7eb39a58da9073.bundle.js"></script></body>
+<script src="/dist/index.669dbe28a2968cc32b62.bundle.js"></script></body>
 </html>

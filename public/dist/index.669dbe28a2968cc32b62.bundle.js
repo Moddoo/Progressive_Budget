@@ -35694,7 +35694,8 @@ var Chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Ch
 
 
 var transactions = [];
-var myChart;
+var myChart; // if(module && module.hot) module.hot.accept()
+
 fetch("/api/transaction").then(function (response) {
   return response.json();
 }).then(function (data) {
@@ -35827,4 +35828,4 @@ document.querySelector("#sub-btn").onclick = function () {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.fff5bb7eb39a58da9073.bundle.js.map
+//# sourceMappingURL=index.669dbe28a2968cc32b62.bundle.js.map
